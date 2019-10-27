@@ -1,2 +1,3 @@
 # tsundoku
-Definitely a book app
+
+Yep, a book app
