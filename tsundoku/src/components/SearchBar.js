@@ -1,6 +1,19 @@
 import React from "react";
 
 class SearchBar extends React.Component {
+  state = { bookSearch: "" };
+
+  onInputChange = event => {
+    this.setState({ bookSearch: event.target.value });
+  };
+
+  onFormSubmit = event => {
+    event.preventDefault();
+
+    // to update the value of search item in the parent component
+    this.props.onFormSubmit(this.state.bookSearch);
+  };
+
   render() {
     return (
       <div className="SearcBar">
@@ -9,12 +22,13 @@ class SearchBar extends React.Component {
             <a href="/#" className="navbar-brand">
               Navbar
             </a>
-            <form className="form-inline">
+            <form className="form-inline" onSubmit={this.onFormSubmit}>
               <input
                 className="form-control mr-sm-2"
-                type="search"
                 placeholder="Search"
                 aria-label="Search"
+                onChange={this.onInputChange}
+                value={this.state.bookSearch}
               />
               <button
                 className="btn btn-outline-success my-2 my-sm-0"
